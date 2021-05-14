@@ -4,7 +4,12 @@ import { fetchQuestionsSuccess, fetchQuestionsFail } from './game'
 
 import * as stages from './../../utils/constants'
 
-const initialState = {
+export type GameState = {
+  stage: 'START_GAME' | 'GAME' | 'FETCHING_GAME' | 'END_GAME'
+  username: string
+}
+
+const initialState: GameState = {
   stage: stages.START_GAME,
   username: ''
 }
@@ -16,6 +21,12 @@ const gameState = createSlice({
     startGame: (state, action) => {
       state.username = action.payload.username
       state.stage = stages.FETCHING_GAME
+    },
+    cancelGame: (state) => {
+      state.stage = stages.START_GAME
+    },
+    finishGame: (state) => {
+      state.stage = stages.END_GAME
     }
   },
   extraReducers: (builder) => {
@@ -29,6 +40,6 @@ const gameState = createSlice({
   }
 })
 
-export const { startGame } = gameState.actions
+export const { finishGame, startGame, cancelGame } = gameState.actions
 
 export default gameState.reducer

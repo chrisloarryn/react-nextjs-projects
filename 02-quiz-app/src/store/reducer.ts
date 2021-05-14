@@ -1,9 +1,14 @@
 import { combineReducers } from "redux";
 
-import gameState from './slices/gameInit'
-import quiz from './slices/game'
+import gameState, { GameState } from './slices/gameInit'
+import quiz, { QuizState } from './slices/game'
 
-export default combineReducers({
+export type RootState = {
+  gameState: GameState;
+  quiz: QuizState;
+}
+
+export default combineReducers<RootState>({
   gameState,
   quiz
 })

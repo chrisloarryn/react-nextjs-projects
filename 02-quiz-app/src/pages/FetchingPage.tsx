@@ -1,9 +1,14 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+
+import { cancelGame } from 'store/slices/gameInit'
 
 const FetchingPage = () => {
+  const dispatch = useDispatch()
   return (
     <div>
-      <h1>FetchingPage</h1>
+      <p>Loading</p>
+      <button onClick={() => dispatch(cancelGame())}>Cancel</button>
     </div>
   )
 }
