@@ -1,9 +1,9 @@
-import React from 'react'
+import { FC } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { cancelGame } from 'store/slices/gameInit'
 
-const FetchingPage = () => {
+const FetchingPage: FC = () => {
   const dispatch = useDispatch()
   return (
     <div>

@@ -1,19 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'store/reducer'
 import { answerQuestion } from 'store/slices/game'
 import { finishGame } from 'store/slices/gameInit'
 
-
-const GamePage = () => {
+const GamePage: FC = () => {
   const dispatch = useDispatch()
   const [timeLeft, setTimeLeft] = useState(60)
-  const currentQuestion = useSelector<RootState, string>(state => state.quiz.questions[state.quiz.currentQuestionIndex as number].question)
-  const score = useSelector<RootState, number>(state => state.quiz.score as number)
-  const currentQuestionIndex = useSelector<RootState, number>(state => state.quiz.currentQuestionIndex as number)
-  
+  const currentQuestion = useSelector<RootState, string>(
+    (state) =>
+      state.quiz.questions[state.quiz.currentQuestionIndex as number].question
+  )
+  const score = useSelector<RootState, number>(
+    (state) => state.quiz.score as number
+  )
+  const currentQuestionIndex = useSelector<RootState, number>(
+    (state) => state.quiz.currentQuestionIndex as number
+  )
+
   const answerHandler = (answer: 'True' | 'False') => {
-    dispatch(answerQuestion({answer}))
+    dispatch(answerQuestion({ answer }))
   }
   const endGameHandler = () => {
     dispatch(finishGame())
@@ -31,7 +37,7 @@ const GamePage = () => {
     <div>
       <p>Time Left: {timeLeft}</p>
       <p>Score: {score}</p>
-      <p>{currentQuestionIndex+1}/10</p>
+      <p>{currentQuestionIndex + 1}/10</p>
       <p dangerouslySetInnerHTML={{ __html: currentQuestion }}></p>
       <button onClick={() => answerHandler('True')}>True</button>
       <button onClick={() => answerHandler('False')}>False</button>

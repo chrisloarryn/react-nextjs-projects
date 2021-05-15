@@ -1,6 +1,6 @@
-import React from 'react'
+import { FC } from 'react'
 
-const EndGamePage = () => {
+const EndGamePage: FC = () => {
   return (
     <div>
       <button>Restart Game</button>
