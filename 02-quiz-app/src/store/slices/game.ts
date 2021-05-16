@@ -9,18 +9,29 @@ export type Question = {
   type: string
 }
 
+export type PossibleResponse = 'True' | 'False'
+
+export type Answer = {
+  question: string
+  answer: PossibleResponse
+  correctAnswer: PossibleResponse
+  isCorrect: boolean
+}
+
 export type QuizState = {
   questions: Question[],
   error: null | undefined
   score: null | undefined | number
   currentQuestionIndex: null | undefined | number
+  answers: Answer[]
 }
 
 const initialState: QuizState = {
   questions: [] as Question[],
   error: null,
   score: null,
-  currentQuestionIndex: undefined
+  currentQuestionIndex: undefined,
+  answers: [] as Answer[]
 }
 
 const quizSlice = createSlice({
@@ -31,13 +42,20 @@ const quizSlice = createSlice({
       state.questions = action.payload;
       state.score = 0;
       state.currentQuestionIndex = 0;
+      state.answers = []
     },
     fetchQuestionsFail: (state, action) => {
       state.error = action.payload
     },
     answerQuestion: (state, action) => {
-      const currentQuestion = state.questions[state.currentQuestionIndex as number]
-      state.score = action.payload.answer === (currentQuestion as any).correct_answer! ? state.score! + 1 : state.score! + 0
+      const { correct_answer, question } = state.questions[state.currentQuestionIndex as number]
+      state.score = action.payload.answer === correct_answer! ? state.score! + 1 : state.score! + 0
+      state.answers.push({
+        question: question,
+        answer: action.payload.answer,
+        correctAnswer: correct_answer as PossibleResponse,
+        isCorrect: action.payload.answer === correct_answer
+      })
     },
     nextQuestion: (state) => {
       (state.currentQuestionIndex as number) += 1

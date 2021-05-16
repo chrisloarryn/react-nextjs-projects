@@ -27,6 +27,9 @@ const gameState = createSlice({
     },
     finishGame: (state) => {
       state.stage = stages.END_GAME
+    },
+    restartGame: (state) => {
+      state.stage = stages.START_GAME
     }
   },
   extraReducers: (builder) => {
@@ -40,6 +43,6 @@ const gameState = createSlice({
   }
 })
 
-export const { finishGame, startGame, cancelGame } = gameState.actions
+export const { finishGame, startGame, cancelGame, restartGame } = gameState.actions
 
 export default gameState.reducer

@@ -6,13 +6,14 @@ import { startGame } from '../store/slices/gameInit'
 const StartGamePage: FC = () => {
   const [username, setUsername] = useState('')
   const dispatch = useDispatch()
-  const handleUserNameChange = (e: BaseSyntheticEvent) =>
-    setUsername(e.target.value)
-  const startGameHandler = () => {
-    dispatch(startGame({ username }))
-  }
+  const handleUserNameChange =
+    ({ target }: BaseSyntheticEvent) =>
+      setUsername(target.value)
+  const startGameHandler =
+    () =>
+      dispatch(startGame({ username }))
   return (
-    <div>
+    <div>   
       <input
         type='text'
         value={username}
