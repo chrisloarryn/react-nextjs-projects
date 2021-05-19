@@ -1,6 +1,10 @@
-import { delay, put, race, take } from 'redux-saga/effects';
+import { delay, put, race, take } from 'redux-saga/effects'
 
-import { answerQuestion, fetchQuestionsSuccess, nextQuestion } from '../slices/game'
+import {
+  answerQuestion,
+  fetchQuestionsSuccess,
+  nextQuestion
+} from '../slices/game'
 import { finishGame } from '../slices/gameInit'
 
 function* answersSaga() {
@@ -15,7 +19,7 @@ export default function* gameSaga() {
     yield take(fetchQuestionsSuccess.type)
 
     yield race({
-      delay: delay(60000),
+      delay: delay(600000),
       done: answersSaga()
     })
 

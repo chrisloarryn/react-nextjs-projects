@@ -1,12 +1,13 @@
 import { cancel, delay, take, fork, put, call } from 'redux-saga/effects'
 
 import { cancelGame, startGame } from './../slices/gameInit'
-import { fetchQuestionsSuccess, fetchQuestionsFail} from './../slices/game'
+import { fetchQuestionsSuccess, fetchQuestionsFail } from './../slices/game'
 import { fetchQuizFromAPI } from './../../utils/api'
 
 // TODO: Delete this any type as soon as possible.
 function* fetchQuestionsSaga(): any {
   try {
+    // yield delay(600000000) // 1000
     yield delay(1000)
     const data = yield call(fetchQuizFromAPI)
     yield put(fetchQuestionsSuccess(data))

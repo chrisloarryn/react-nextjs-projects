@@ -28,9 +28,12 @@ const MainPage: FC = () => {
       break
   }
   return (
-    <>
-     {displayedPage} 
-    </>
+    <div className='font-mono bg-purple-50 min-h-screen'>
+      <h1 className='bg-purple-500 text-white p-4 text-2xl text-center'>
+        Redux Saga Quiz Game
+      </h1>
+      {displayedPage}
+    </div>
   )
 }
 
