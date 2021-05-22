@@ -1,14 +1,18 @@
+import { StatusBar } from 'expo-status-bar'
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native'
 
 const RegisterScreen = () => {
   return (
-    <View>
-      <Text>Register Screen</Text>
-    </View>
+    <KeyboardAvoidingView>
+      <StatusBar style='light' />
+      <Text style={{ marginBottom: '' }}>Create a Signal account</Text>
+    </KeyboardAvoidingView>
   )
 }
 
 export default RegisterScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {}
+})
